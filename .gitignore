@@ -1,5 +1,8 @@
 # Build results
-[Dd]ebug/\n[Rr]elease/\n[Bb]in/\n[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
 
 # Visual Studio files
 .vs/
