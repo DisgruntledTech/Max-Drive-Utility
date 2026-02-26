@@ -1,0 +1,24 @@
+# Build results
+[Dd]ebug/\n[Rr]elease/\n[Bb]in/\n[Oo]bj/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider files
+.idea/
+*.sln.iml
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
