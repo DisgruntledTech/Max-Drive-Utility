@@ -28,13 +28,13 @@ A comprehensive C# console application for inventorying storage devices on Windo
 ## Requirements
 
 - **Operating System**: Windows (XP or later)
-- **.NET Runtime**: .NET 6.0 or higher
+- **.NET Runtime**: .NET 9.0 or higher
 - **Privileges**: Administrator/Elevated privileges required for full WMI access
 
 ## Getting Started
 
 ### Prerequisites
-- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) or later
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later
 - Visual Studio 2019+ or Visual Studio Code
 
 ### Building the Project
