@@ -1,6 +1,7 @@
 using System;
 using System.Management;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// Retrieves physical storage device information using WMI.
@@ -9,13 +10,13 @@ public class StorageInventory
 {
     public class StorageDevice
     {
-        public string DeviceName { get; set; }
-        public string Model { get; set; }
-        public string SerialNumber { get; set; }
-        public string InterfaceType { get; set; }
+        public required string DeviceName { get; set; }
+        public required string Model { get; set; }
+        public required string SerialNumber { get; set; }
+        public required string InterfaceType { get; set; }
         public ulong Size { get; set; }
-        public string Status { get; set; }
-        public string MediaType { get; set; }
+        public required string Status { get; set; }
+        public required string MediaType { get; set; }
     }
 
     /// <summary>
@@ -26,6 +27,12 @@ public class StorageInventory
     {
         List<StorageDevice> devices = new List<StorageDevice>();
         
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            Console.WriteLine("Storage device retrieval is only supported on Windows.");
+            return devices;
+        }
+
         try
         {
             ManagementScope scope = new ManagementScope(@"\\.\root\cimv2");
