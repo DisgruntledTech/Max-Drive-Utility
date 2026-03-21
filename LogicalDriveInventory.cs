@@ -1,22 +1,25 @@
 using System;
+using System.Runtime.Versioning;
 using System.Management;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// Retrieves logical drive information using WMI.
 /// </summary>
+[SupportedOSPlatform("windows")]
 public class LogicalDriveInventory
 {
     public class LogicalDrive
     {
-        public string DriveLetter { get; set; }
-        public string FileSystem { get; set; }
+        public required string DriveLetter { get; set; }
+        public required string FileSystem { get; set; }
         public ulong TotalSize { get; set; }
         public ulong FreeSpace { get; set; }
         public ulong UsedSpace { get; set; }
         public double PercentUsed { get; set; }
-        public string DriveType { get; set; }
-        public string VolumeName { get; set; }
+        public required string DriveType { get; set; }
+        public required string VolumeName { get; set; }
     }
 
     /// <summary>
@@ -26,6 +29,12 @@ public class LogicalDriveInventory
     public static List<LogicalDrive> GetLogicalDrives()
     {
         List<LogicalDrive> drives = new List<LogicalDrive>();
+
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            Console.WriteLine("Storage device retrieval is only supported on Windows.");
+            return drives;
+        }
 
         try
         {
