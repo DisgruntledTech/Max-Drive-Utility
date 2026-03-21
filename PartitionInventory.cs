@@ -1,6 +1,7 @@
 using System;
 using System.Management;
 using System.Collections.Generic;
+//using System.Runtime.InteropServices;
 
 /// <summary>
 /// Retrieves disk partition information using WMI.
@@ -9,12 +10,12 @@ public class PartitionInventory
 {
     public class Partition
     {
-        public string PartitionName { get; set; }
-        public string DiskIndex { get; set; }
-        public string IndexNumber { get; set; }
+        public string? PartitionName { get; set; }
+        public string? DiskIndex { get; set; }
+        public string? IndexNumber { get; set; }
         public ulong Size { get; set; }
         public ulong StartingOffset { get; set; }
-        public string Type { get; set; }
+        public string?Type { get; set; }
         public bool BootPartition { get; set; }
     }
 
@@ -28,6 +29,12 @@ public class PartitionInventory
 
         try
         {
+            if (!System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+            {
+                Console.WriteLine("Error: PartitionInventory is only supported on Windows.");
+                return partitions;
+            }
+
             ManagementScope scope = new ManagementScope(@"\\.\root\cimv2");
             scope.Connect();
 
