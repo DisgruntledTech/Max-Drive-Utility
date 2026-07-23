@@ -87,8 +87,22 @@ public class Program
             }
 
             Console.WriteLine("\n\n─────────────────────────────────────────");
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+            Console.WriteLine("Press any esc to exit...");
+            if ((string?)(Console.ReadLine() ?? string.Empty) == "esc")
+            {
+                return;
+            }   
+            if ((string?)(Console.ReadLine() ?? string.Empty) == "archive")
+            {
+                Console.WriteLine("Enter the source directory to archive files from:");
+                string sourceDirectory = Console.ReadLine() ?? string.Empty;
+
+                Console.WriteLine("Enter the archive directory to move files to:");
+                string archiveDirectory = Console.ReadLine() ?? string.Empty;
+
+                ArchiveFiles.ArchiveFilesInDirectory(sourceDirectory, archiveDirectory);
+            }       
+            
         }
         else
         {
